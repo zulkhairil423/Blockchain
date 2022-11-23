@@ -7,6 +7,10 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "./firebaseconfig";
+import Autolog from "./artifacts/contracts/Autolog.sol/CarDataStorage.json";
+import { ethers } from "hardhat";
+
+const autologAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
 
 function Homepage() {
   //property variables
@@ -52,8 +56,12 @@ function Homepage() {
 
   
 //retrive car info function
-  const retrieveplateno = async () => {
+  async function fetchCarData () {    
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const contract = new ethers.Contract(autologAddress, Autolog.abi, provider);
+
     try {
+      const data = await contract.viewCar(plateNo);
     } catch (error) {
       console.log(error.message);
     }
@@ -111,7 +119,7 @@ function Homepage() {
             setPlateNo(event.target.value);
           }}
         />
-        <button class="retrieve-info" onClick={retrieveplateno}> Retrieve Car Info</button>
+        <button class="retrieve-info" onClick={fetchCarData}> Retrieve Car Info</button>
       </div>
 
     </div>
