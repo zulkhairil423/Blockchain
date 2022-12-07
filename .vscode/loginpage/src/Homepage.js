@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import "./App.css";
 import { useState } from  "react";
 import {
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "./firebaseconfig";
@@ -14,28 +13,11 @@ const autologAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
 function Homepage() {
   //property variables
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPswrd, setRegisterPswrd] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPswrd, setLoginPswrd] = useState("");
   const [plateNo, setPlateNo] = useState("");
   const history = useHistory();
 
-
-//register function  
-  const register = async () => {
-    try {
-        const user = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPswrd
-      );
-      history.push("/formPage");
-      console.log(user)
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
 //login function
   const login = async () => {
@@ -69,26 +51,6 @@ function Homepage() {
 
   return (
     <div className="AutoLog">
-      <div>
-        <h3> Register User </h3>
-        <input
-          placeholder="Email..."
-          class="login-register"
-          onChange={(event) => {
-            setRegisterEmail(event.target.value);
-          }}
-        />
-        <input
-          placeholder="Password..."
-          class="login-register"
-          onChange={(event) => {
-            setRegisterPswrd(event.target.value);
-          }}
-        />
-
-        <button class="login-reg-button" onClick={register}>Create User</button>
-      </div>
-
       <div>
         <h3> Login </h3>
         <input
