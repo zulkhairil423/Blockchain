@@ -79,6 +79,7 @@ function Homepage() {
           }}
         />
         <input
+          type={"password"}
           placeholder="Password..."
           class="login-register"
           onChange={(event) => {
@@ -99,6 +100,7 @@ function Homepage() {
           }}
         />
         <input
+          type={"password"}
           placeholder="Password..."
           class="login-register"
           onChange={(event) => {
