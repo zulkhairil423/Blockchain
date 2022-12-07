@@ -7,10 +7,10 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "./firebaseconfig";
-import Autolog from "./artifacts/contracts/Autolog.sol/CarDataStorage.json";
-import { ethers } from "hardhat";
+import CarDataStorage from "./artifacts/contracts/Autolog.sol/CarDataStorage.json";
+import { ethers } from "ethers";
 
-const autologAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
+const autologAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
 function Homepage() {
   //property variables
@@ -20,8 +20,7 @@ function Homepage() {
   const [loginPswrd, setLoginPswrd] = useState("");
   const [plateNo, setPlateNo] = useState("");
   const history = useHistory();
-
-
+  
 //register function  
   const register = async () => {
     try {
@@ -57,11 +56,20 @@ function Homepage() {
   
 //retrive car info function
   async function fetchCarData () {    
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const contract = new ethers.Contract(autologAddress, Autolog.abi, provider);
+    const provider = new ethers.providers.JsonRpcProvider();
+    const contract = new ethers.Contract(autologAddress, CarDataStorage.abi, provider);
 
     try {
       const data = await contract.viewCar(plateNo);
+      console.log(data);
+
+      document.getElementById("tabtitle").innerHTML = plateNo;
+
+      document.getElementById("one").innerHTML = data[0];
+      document.getElementById("two").innerHTML = data[1];
+      /*for(var i=0; i<data.length; i++){
+        document.getElementById("tabdata").innerHTML = <td>data[i]</td>;
+      }*/
     } catch (error) {
       console.log(error.message);
     }
@@ -119,7 +127,21 @@ function Homepage() {
             setPlateNo(event.target.value);
           }}
         />
-        <button class="retrieve-info" onClick={fetchCarData}> Retrieve Car Info</button>
+        
+        <table id="itab">
+          <thead>
+            <tr>
+              <td id="tabtitle"></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="tabdata">
+              <p id="one"></p>
+              <p id="two"></p>
+            </tr>
+          </tbody>
+        </table>
+        
       </div>
 
     </div>
