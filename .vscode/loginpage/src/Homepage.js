@@ -62,10 +62,12 @@ function Homepage() {
 
     try {
       const data = await contract.viewCar(plateNo);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    console.log('Data: ', data);
+    document.getElementById("itab").innerHTML = data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
   return (
     <div className="AutoLog">
@@ -122,8 +124,9 @@ function Homepage() {
           }}
         />
         <button class="retrieve-info" onClick={fetchCarData}> Retrieve Car Info</button>
+        <p id="itab"></p>
       </div>
-
+          
     </div>
   );
 
