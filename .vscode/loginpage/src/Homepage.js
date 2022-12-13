@@ -72,27 +72,6 @@ function Homepage() {
   return (
     <div className="AutoLog">
       <div>
-        <h3> Register User </h3>
-        <input
-          placeholder="Email..."
-          class="login-register"
-          onChange={(event) => {
-            setRegisterEmail(event.target.value);
-          }}
-        />
-        <input
-          type={"password"}
-          placeholder="Password..."
-          class="login-register"
-          onChange={(event) => {
-            setRegisterPswrd(event.target.value);
-          }}
-        />
-
-        <button class="login-reg-button" onClick={register}>Create User</button>
-      </div>
-
-      <div>
         <h3> Login </h3>
         <input
           placeholder="Email..."
@@ -101,6 +80,10 @@ function Homepage() {
             setLoginEmail(event.target.value);
           }}
         />
+      </div>
+
+
+      <div> 
         <input
           type={"password"}
           placeholder="Password..."
@@ -109,7 +92,8 @@ function Homepage() {
             setLoginPswrd (event.target.value);
           }}
         />
-
+      </div>
+      <div>
         <button class="login-reg-button" onClick={login}>Login</button>
       </div>
 
@@ -122,6 +106,7 @@ function Homepage() {
           onChange={(event) => {
             setPlateNo(event.target.value);
           }}
+          value = {plateNo}
         />
         <button class="retrieve-info" onClick={fetchCarData}> Retrieve Car Info</button>
         <p id="itab"></p>
