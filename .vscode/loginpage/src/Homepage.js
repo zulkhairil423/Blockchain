@@ -39,7 +39,7 @@ function Homepage() {
   
 //retrive car info function
   async function fetchCarData () {    
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.providers.JsonRpcProvider();
     const contract = new ethers.Contract(autologAddress, Autolog.abi, provider);
 
     try {
@@ -91,6 +91,8 @@ function Homepage() {
           value = {plateNo}
         />
         <button class="retrieve-info" onClick={fetchCarData}> Retrieve Car Info</button>
+        </div>
+      <div className="callcarinfo">  
         <p id="itab"></p>
       </div>
           
