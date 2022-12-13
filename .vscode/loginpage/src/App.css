@@ -46,6 +46,18 @@
   box-shadow:4px 4px 10px rgba(0,0,0,0.06);
 }
 
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.callcarinfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .login-register {
   width: 15%;
   resize: vertical;
@@ -53,6 +65,8 @@
   border-radius:15px;
   border: 2px;
   box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  justify-content: center;
+  align-content: center;
 }
 
 .login-reg-button {

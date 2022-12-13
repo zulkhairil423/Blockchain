@@ -53,8 +53,8 @@ function Homepage() {
 
   return (
     <div className="AutoLog">
-      <div>
-        <h3> Login </h3>
+      <h3 className="login"> Login </h3>
+      <div className="login">
         <input
           placeholder="Email..."
           class="login-register"
@@ -65,7 +65,7 @@ function Homepage() {
       </div>
 
 
-      <div> 
+      <div className="login"> 
         <input
           type={"password"}
           placeholder="Password..."
@@ -75,13 +75,13 @@ function Homepage() {
           }}
         />
       </div>
-      <div>
+      <div className="login">
         <button class="login-reg-button" onClick={login}>Login</button>
       </div>
 
 
-      <div>
-        <h3> Car Plate Number </h3>
+      <h3 className="callcarinfo"> Car Plate Number </h3>
+      <div className="callcarinfo">
         <input
           placeholder="PlateNo..."
           class="car-plate-no"
