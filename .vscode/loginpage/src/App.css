@@ -46,10 +46,29 @@
   box-shadow:4px 4px 10px rgba(0,0,0,0.06);
 }
 
+.jobscope-input {
+  width: 15%;
+  resize: vertical;
+  padding:15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+}
+
 .login {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.submit-report {
+  padding:10px;
+  border:none;
+  background-color:#3F51B5;
+  color:#fff;
+  font-weight:600;
+  border-radius:5px;
+  width: auto;
 }
 
 .callcarinfo {

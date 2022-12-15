@@ -80,7 +80,7 @@ function Homepage() {
       </div>
 
 
-      <h3 className="callcarinfo"> Car Plate Number </h3>
+      <h3 className="callcarinfo"> Retrieve Your Car's Data </h3>
       <div className="callcarinfo">
         <input
           placeholder="PlateNo..."
@@ -90,7 +90,7 @@ function Homepage() {
           }}
           value = {plateNo}
         />
-        <button class="retrieve-info" onClick={fetchCarData}> Retrieve Car Info</button>
+        <button class="retrieve-info" onClick={fetchCarData}> Retrieve </button>
         </div>
       <div className="callcarinfo">  
         <p id="itab"></p>

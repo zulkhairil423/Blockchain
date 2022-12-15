@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\LeonyX\\Documents\\Blockchain\\.vscode\\loginpage\\contracts\\Autolog.sol": {
-      "lastModificationDate": 1669474799400,
-      "contentHash": "22f67f75476c5f9bac2f04db18197d8f",
+      "lastModificationDate": 1670938689853,
+      "contentHash": "09b0b8bbfe0abfa8e7a474eeddd5752e",
       "sourceName": "contracts/Autolog.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -39,7 +39,7 @@
       ]
     },
     "C:\\Users\\LeonyX\\Documents\\Blockchain\\.vscode\\loginpage\\node_modules\\hardhat\\console.sol": {
-      "lastModificationDate": 1669473627987,
+      "lastModificationDate": 1670936710827,
       "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
