@@ -40,15 +40,15 @@ function FormPage() {
     
     return(
       <div className='Report-Page'>
-        <h2>Report Form Page</h2>
+        <h2 className='form-header'>Report Form Page</h2>
         <h4>User Logged In</h4>
         {user?.email}
-        <button class = "logout" onClick={logout}>Logout</button>
+        <button className = "logout" onClick={logout}>Logout</button>
         <div>
         <h3> Car Plate Number:  
           <input
             placeholder="Car Plate Number..."
-            class="reporters-name"
+            className="reporters-name"
             onChange={(event) => {
               setcarplateno(event.target.value);
             }}
@@ -67,14 +67,15 @@ function FormPage() {
           <h3> Reporter's Name: 
           <input
             placeholder="Full Name..."
-            class="reporters-name"
+            className="reporters-name"
             onChange={(event) => {
               setFullName(event.target.value);
             }}
           />
           </h3>
           <h3> Jobscope: 
-            <select className='jobscope-input' value={jobs} onChange={e=>setjobs(e.target.value)}>
+            <select className='jobscope-input' value={jobs} onChange={e=>setjobs(e.target.value)}
+            placeholder="Jobscope..">
               <option></option>
               <option>JPJ</option>
               <option>Puspakom Inspector</option>
@@ -84,7 +85,7 @@ function FormPage() {
           <h3> Report's Detail: </h3>
           <textarea
             placeholder="Detail..."
-            class="car-detail-info"
+            className="car-detail-info"
             onChange={(event) => {
               setReportDetail(event.target.value);
             }}

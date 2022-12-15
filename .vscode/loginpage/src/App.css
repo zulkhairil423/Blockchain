@@ -37,6 +37,11 @@
   box-shadow:4px 4px 10px rgba(0,0,0,0.06);
 }
 
+.form-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .date-of-report {
   width: 15%;
   resize: vertical;
