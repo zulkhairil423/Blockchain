@@ -41,14 +41,18 @@ function FormPage() {
     return(
       <div className='Report-Page'>
         <h2 className='form-header'>Report Form Page</h2>
-        <h4>User Logged In</h4>
-        {user?.email}
-        <button className = "logout" onClick={logout}>Logout</button>
-        <div>
+        <h4 className='userlogin'>User Logged In</h4>
+        <div className='userlogin'>{user?.email}</div>
+        <div className='logout-changepass'>
+          <button className = "logout" onClick={logout}>Logout</button>
+        </div>
+        
+      <div className='ReportForm'>
+        <div className='reportborder'>
         <h3> Car Plate Number:  
           <input
             placeholder="Car Plate Number..."
-            className="reporters-name"
+            className="car-plate-no"
             onChange={(event) => {
               setcarplateno(event.target.value);
             }}
@@ -76,7 +80,6 @@ function FormPage() {
           <h3> Jobscope: 
             <select className='jobscope-input' value={jobs} onChange={e=>setjobs(e.target.value)}
             placeholder="Jobscope..">
-              <option></option>
               <option>JPJ</option>
               <option>Puspakom Inspector</option>
               <option>Vehicles Mechanic</option>
@@ -90,10 +93,11 @@ function FormPage() {
               setReportDetail(event.target.value);
             }}
           />
-        </div>
-        <div>
+          <div className='submit'>
         <button className='submit-report' onClick={submit}>Submit Report</button>
         </div>
+        </div>
+      </div>
       </div>
     );
 }

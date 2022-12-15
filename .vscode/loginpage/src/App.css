@@ -29,7 +29,7 @@
 }
 
 .reporters-name {
-  width: 30%;
+  width: 300px;
   resize: vertical;
   padding:15px;
   border-radius:15px;
@@ -42,8 +42,9 @@
   align-items: center;
   justify-content: center;
 }
+
 .date-of-report {
-  width: 15%;
+  width: 200px;
   resize: vertical;
   padding:15px;
   border-radius:15px;
@@ -52,7 +53,7 @@
 }
 
 .jobscope-input {
-  width: 15%;
+  width: 200px;
   resize: vertical;
   padding:15px;
   border-radius:15px;
@@ -104,7 +105,7 @@
 }
 
 .car-plate-no{
-  width: 15%;
+  width: 200px;
   resize: vertical;
   padding:15px;
   border-radius:15px;
@@ -133,13 +134,46 @@
 }
 
 textarea {
-  width:50%;
+  width:450px;
   resize: vertical;
   padding:15px;
   border-radius:15px;
   border:0;
   box-shadow:4px 4px 10px rgba(0,0,0,0.06);
   height:250px;
+}
+
+.ReportForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userlogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-changepass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reportborder {
+  width: 500px;
+  height: auto;
+  border-radius:15px;
+  border-color: black;
+  padding: auto;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+}
+
+.submit{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes App-logo-spin {

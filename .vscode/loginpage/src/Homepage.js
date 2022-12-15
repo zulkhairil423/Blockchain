@@ -21,15 +21,15 @@ function Homepage() {
   const [plateNo, setPlateNo] = useState("");
   const history = useHistory();
   const [icon, setIcon] = useState(eyeClosed);
-  const [pass, setPass] = useState("password");
+  const [pass, setPass] = useState('password');
 
   const hidePass = () => {
-    if(loginPswrd==='password'){
-      setIcon(eye);
+    if(pass==='password'){
+      setIcon(eye);      
       setPass('text');
     }
     else{
-      setIcon(eyeClosed);
+      setIcon(eyeClosed);     
       setPass('password');
     }
   }
@@ -72,7 +72,7 @@ function Homepage() {
       <div className="login">
         <input
           placeholder="Email..."
-          class="login-register"
+          className="login-register"
           onChange={(event) => {
             setLoginEmail(event.target.value);
           }}
@@ -84,15 +84,15 @@ function Homepage() {
         <input
           type={pass}
           placeholder="Password..."
-          class="login-register"
+          className="login-register"
           onChange={(event) => {
             setLoginPswrd (event.target.value);
           }}
         />
-        <span onClick={hidePass}><Icon icon={icon} size={25}></Icon></span>
+        <Icon onClick={hidePass} icon={icon} size={25}/>
       </div>
       <div className="login">
-        <button class="login-reg-button" onClick={login}>Login</button>
+        <button className="login-reg-button" onClick={login}>Login</button>
       </div>
 
 
@@ -100,13 +100,13 @@ function Homepage() {
       <div className="callcarinfo">
         <input
           placeholder="PlateNo..."
-          class="car-plate-no"
+          className="car-plate-no"
           onChange={(event) => {
             setPlateNo(event.target.value);
           }}
           value = {plateNo}
         />
-        <button class="retrieve-info" onClick={fetchCarData}> Retrieve </button>
+        <button className="retrieve-info" onClick={fetchCarData}> Retrieve </button>
         </div>
       <div className="callcarinfo">  
         <p id="itab"></p>
