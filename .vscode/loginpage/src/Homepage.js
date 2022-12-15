@@ -47,6 +47,7 @@ function Homepage() {
       
     } catch (error) {
       console.log(error.message);
+      alert("Email/Password is invalid");
     }
     
   };
@@ -63,6 +64,7 @@ function Homepage() {
     document.getElementById("itab").innerHTML = data;
   } catch (error) {
     console.log(error.message);
+    alert(error)
   }
 };
 
