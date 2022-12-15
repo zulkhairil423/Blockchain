@@ -8,6 +8,9 @@ import {
 import { auth } from "./firebaseconfig";
 import Autolog from "./artifacts/contracts/Autolog.sol/CarDataStorage.json";
 import { ethers } from "ethers";
+import { Icon } from 'react-icons-kit';
+import {eyeClosed} from 'react-icons-kit/oct/eyeClosed';
+import {eye} from 'react-icons-kit/oct/eye';
 
 const autologAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
@@ -17,7 +20,19 @@ function Homepage() {
   const [loginPswrd, setLoginPswrd] = useState("");
   const [plateNo, setPlateNo] = useState("");
   const history = useHistory();
+  const [icon, setIcon] = useState(eyeClosed);
+  const [pass, setPass] = useState("password");
 
+  const hidePass = () => {
+    if(loginPswrd==='password'){
+      setIcon(eye);
+      setPass('text');
+    }
+    else{
+      setIcon(eyeClosed);
+      setPass('password');
+    }
+  }
 
 //login function
   const login = async () => {
@@ -67,13 +82,14 @@ function Homepage() {
 
       <div className="login"> 
         <input
-          type={"password"}
+          type={pass}
           placeholder="Password..."
           class="login-register"
           onChange={(event) => {
             setLoginPswrd (event.target.value);
           }}
         />
+        <span onClick={hidePass}><Icon icon={icon} size={25}></Icon></span>
       </div>
       <div className="login">
         <button class="login-reg-button" onClick={login}>Login</button>
