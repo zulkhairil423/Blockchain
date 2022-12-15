@@ -63,10 +63,7 @@ function Homepage() {
       const data = await contract.viewCar(plateNo);
       console.log(data);
 
-      document.getElementById("tabtitle").innerHTML = plateNo;
-
-      document.getElementById("one").innerHTML = data[0];
-      document.getElementById("two").innerHTML = data[1];
+      document.getElementById("itab").innerHTML = data;
       /*for(var i=0; i<data.length; i++){
         document.getElementById("tabdata").innerHTML = <td>data[i]</td>;
       }*/
@@ -127,21 +124,8 @@ function Homepage() {
             setPlateNo(event.target.value);
           }}
         />
-        
-        <table id="itab">
-          <thead>
-            <tr>
-              <td id="tabtitle"></td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr id="tabdata">
-              <p id="one"></p>
-              <p id="two"></p>
-            </tr>
-          </tbody>
-        </table>
-        
+        <button class="retrieve-info" onClick={fetchCarData}> Retrieve Car Info</button>
+        <table id="itab"></table>
       </div>
 
     </div>
