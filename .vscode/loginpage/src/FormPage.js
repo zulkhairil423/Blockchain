@@ -48,9 +48,11 @@ function FormPage() {
       setFullName("");
 
       await transaction.wait();
-      console.log("Details submitted successfully");
+      console.log(selectdate);
       alert("Form submitted successfully");
     };
+
+  
     
     return(
       <div className='Report-Page'>
