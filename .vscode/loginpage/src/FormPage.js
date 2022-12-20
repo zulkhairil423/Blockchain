@@ -7,15 +7,19 @@ import {
 import { auth } from "./firebaseconfig";
 import { useState, useEffect } from  "react";
 import {useHistory} from "react-router-dom";
-import { ethers } from "ethers";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import CarDataStorage from "./artifacts/contracts/Autolog.sol/CarDataStorage.json";
+import { ethers } from "ethers";
 
 const autologAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
 function FormPage() {
-    const [date, setDate] = useState("");
+    const [carplateno, setcarplateno] = useState("");
+    const [selectdate, setselectDate] = useState("");
     const [fullname, setFullName] = useState("");
     const [detail, setReportDetail] = useState("");
+    const [jobs, setjobs] = useState("");
     const history = useHistory();
 
     const [user, setUser] = useState({});
@@ -32,19 +36,18 @@ function FormPage() {
  
     const submit = async () => {
       if (!detail) return;
-      if (!date) return;
+      if (!selectdate) return;
       if (!fullname) return;
 
       const provider = new ethers.providers.JsonRpcProvider();
-
-      const contract = new ethers.Contract(autologAddress, CarDataStorage.abi, provider);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(autologAddress, CarDataStorage.abi, signer);
       
-      const report = detail.concat("\n\n\n", fullname, "\n", date);
+      const report = detail.concat("\n\n\n", fullname, "\n", selectdate);
       
-      const transaction = await contract.updateCar(report);
+      const transaction = await contract.updateCar(carplateno, report);
 
       setReportDetail("");
-      setDate("");
       setFullName("");
 
       await transaction.wait();
@@ -52,40 +55,65 @@ function FormPage() {
     };
     
     return(
-      <div className='Insert Car Detail Page'>
-        <h2>Report Form Page</h2>
-        <h4>User Logged In</h4>
-        {user?.email}
-        <button class = "logout" onClick={logout}>Logout</button>
-        <div>
-          <h3> Date </h3>
+      <div className='Report-Page'>
+        <h2 className='form-header'>Report Form Page</h2>
+        <h4 className='userlogin'>User Logged In</h4>
+        <div className='userlogin'>{user?.email}</div>
+        <div className='logout-changepass'>
+          <button className = "logout" onClick={logout}>Logout</button>
+        </div>
+        
+      <div className='ReportForm'>
+        <div className='reportborder'>
+        <h3> Car Plate Number:  
           <input
-            placeholder="Date..."
-            class="date-of-report"
+            placeholder="Car Plate Number..."
+            className="car-plate-no"
             onChange={(event) => {
-              setDate(event.target.value);
+              setcarplateno(event.target.value);
             }}
           />
-          <h3> Reporter's Name </h3>
+        </h3>
+          <h3> Date: 
+          <DatePicker
+            placeholder="Date..."
+            className='date-of-report'
+            selected={selectdate}
+            onChange={date => setselectDate(date)
+            }
+            dateFormat='dd/MM/yyyy'
+          />
+          </h3>
+          <h3> Reporter's Name: 
           <input
             placeholder="Full Name..."
-            class="reporters-name"
+            className="reporters-name"
             onChange={(event) => {
               setFullName(event.target.value);
             }}
           />
-          <h3> Report's Detail </h3>
+          </h3>
+          <h3> Jobscope: 
+            <select className='jobscope-input' value={jobs} onChange={e=>setjobs(e.target.value)}
+            placeholder="Jobscope..">
+              <option>JPJ</option>
+              <option>Puspakom Inspector</option>
+              <option>Vehicles Mechanic</option>
+            </select>
+          </h3>
+          <h3> Report's Detail: </h3>
           <textarea
             placeholder="Detail..."
-            class="car-detail-info"
+            className="car-detail-info"
             onChange={(event) => {
               setReportDetail(event.target.value);
             }}
           />
+          <div className='submit'>
+        <button className='submit-report' onClick={submit}>Submit Report</button>
         </div>
-        <div>
-        <button onClick={submit}>Submit Report</button>
         </div>
+      </div>
       </div>
     );
 }
