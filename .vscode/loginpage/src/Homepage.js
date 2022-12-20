@@ -25,11 +25,11 @@ function Homepage() {
 
   const hidePass = () => {
     if(pass==='password'){
-      setIcon(eye);      
+      setIcon(eye);
       setPass('text');
     }
     else{
-      setIcon(eyeClosed);     
+      setIcon(eyeClosed);
       setPass('password');
     }
   }
@@ -44,17 +44,17 @@ function Homepage() {
       );
       history.push("/formPage");
       console.log(user)
-      
+
     } catch (error) {
       console.log(error.message);
       alert("Email/Password is invalid");
     }
-    
+
   };
 
-  
+
 //retrive car info function
-  async function fetchCarData () {    
+  async function fetchCarData () {
     const provider = new ethers.providers.JsonRpcProvider();
     const contract = new ethers.Contract(autologAddress, Autolog.abi, provider);
 
@@ -82,7 +82,7 @@ function Homepage() {
       </div>
 
 
-      <div className="login"> 
+      <div className="login">
         <input
           type={pass}
           placeholder="Password..."
@@ -110,13 +110,12 @@ function Homepage() {
         />
         <button className="retrieve-info" onClick={fetchCarData}> Retrieve </button>
         </div>
-      <div className="callcarinfo">  
+      <div className="callcarinfo">
         <p id="itab"></p>
       </div>
-          
+
     </div>
   );
 
 }
  export default Homepage;
- 
