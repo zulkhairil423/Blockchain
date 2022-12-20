@@ -25,11 +25,11 @@ function Homepage() {
 
   const hidePass = () => {
     if(pass==='password'){
-      setIcon(eye);
+      setIcon(eye);      
       setPass('text');
     }
     else{
-      setIcon(eyeClosed);
+      setIcon(eyeClosed);     
       setPass('password');
     }
   }
@@ -44,17 +44,17 @@ function Homepage() {
       );
       history.push("/formPage");
       console.log(user)
-
+      
     } catch (error) {
       console.log(error.message);
       alert("Email/Password is invalid");
     }
-
+    
   };
 
-
+  
 //retrive car info function
-  async function fetchCarData () {
+  async function fetchCarData () {    
     const provider = new ethers.providers.JsonRpcProvider();
     const contract = new ethers.Contract(autologAddress, Autolog.abi, provider);
 
@@ -74,7 +74,7 @@ function Homepage() {
       <div className="login">
         <input
           placeholder="Email..."
-          className="login-register"
+          className="email"
           onChange={(event) => {
             setLoginEmail(event.target.value);
           }}
@@ -82,19 +82,19 @@ function Homepage() {
       </div>
 
 
-      <div className="login">
+      <div className="login"> 
         <input
           type={pass}
           placeholder="Password..."
-          className="login-register"
+          className="password"
           onChange={(event) => {
             setLoginPswrd (event.target.value);
           }}
         />
-        <Icon onClick={hidePass} icon={icon} size={25}/>
+        <span><Icon onClick={hidePass} icon={icon} size={25}/></span>
       </div>
       <div className="login">
-        <button className="login-reg-button" onClick={login}>Login</button>
+        <button className="login-button" onClick={login}>Login</button>
       </div>
 
 
@@ -110,12 +110,14 @@ function Homepage() {
         />
         <button className="retrieve-info" onClick={fetchCarData}> Retrieve </button>
         </div>
-      <div className="callcarinfo">
+      <div className="callcarinfo">  
         <p id="itab"></p>
       </div>
-
+      
+          
     </div>
   );
 
 }
  export default Homepage;
+ 
