@@ -28,12 +28,12 @@ function FormPage() {
     setUser(currentUser);
   });
 }, [])
-  
+
     const logout = async () => {
         await signOut(auth);
         history.push("/");
       };
- 
+
     const submit = async () => {
       if (!detail) return;
       if (!selectdate) return;
@@ -42,9 +42,9 @@ function FormPage() {
       const provider = new ethers.providers.JsonRpcProvider();
       const signer = provider.getSigner();
       const contract = new ethers.Contract(autologAddress, CarDataStorage.abi, signer);
-      
+
       const report = detail.concat("\n\n\n", fullname, "\n", selectdate);
-      
+
       const transaction = await contract.updateCar(carplateno, report);
 
       setReportDetail("");
@@ -53,7 +53,7 @@ function FormPage() {
       await transaction.wait();
       console.log("Details submitted successfully");
     };
-    
+
     return(
       <div className='Report-Page'>
         <h2 className='form-header'>Report Form Page</h2>
@@ -62,10 +62,10 @@ function FormPage() {
         <div className='logout-changepass'>
           <button className = "logout" onClick={logout}>Logout</button>
         </div>
-        
+
       <div className='ReportForm'>
         <div className='reportborder'>
-        <h3> Car Plate Number:  
+        <h3> Car Plate Number:
           <input
             placeholder="Car Plate Number..."
             className="car-plate-no"
@@ -74,7 +74,7 @@ function FormPage() {
             }}
           />
         </h3>
-          <h3> Date: 
+          <h3> Date:
           <DatePicker
             placeholder="Date..."
             className='date-of-report'
@@ -84,7 +84,7 @@ function FormPage() {
             dateFormat='dd/MM/yyyy'
           />
           </h3>
-          <h3> Reporter's Name: 
+          <h3> Reporter's Name:
           <input
             placeholder="Full Name..."
             className="reporters-name"
@@ -93,7 +93,7 @@ function FormPage() {
             }}
           />
           </h3>
-          <h3> Jobscope: 
+          <h3> Jobscope:
             <select className='jobscope-input' value={jobs} onChange={e=>setjobs(e.target.value)}
             placeholder="Jobscope..">
               <option>JPJ</option>
