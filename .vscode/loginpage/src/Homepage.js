@@ -4,6 +4,7 @@ import "./App.css";
 import { useState } from  "react";
 import {
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "./firebaseconfig";
 import Autolog from "./artifacts/contracts/Autolog.sol/CarDataStorage.json";
@@ -22,7 +23,9 @@ function Homepage() {
   const history = useHistory();
   const [icon, setIcon] = useState(eyeClosed);
   const [pass, setPass] = useState('password');
+  const [useremail, setUserEmail] = useState('');
 
+  //hide and show password function
   const hidePass = () => {
     if(pass==='password'){
       setIcon(eye);      
@@ -46,11 +49,25 @@ function Homepage() {
       console.log(user)
       
     } catch (error) {
-      console.log(error.message);
       alert("Email/Password is invalid");
     }
     
   };
+
+  //forget password function
+  const forgetPassword = async () => {
+    try {
+      await sendPasswordResetEmail(
+      auth,
+      useremail
+    );
+    alert("Password reset email sent")
+    
+  } catch (error) {
+    alert(error)
+  }
+  
+};
 
   
 //retrive car info function
@@ -77,10 +94,10 @@ function Homepage() {
           className="email"
           onChange={(event) => {
             setLoginEmail(event.target.value);
+            setUserEmail(event.target.value);
           }}
         />
       </div>
-
 
       <div className="login"> 
         <input
@@ -93,6 +110,10 @@ function Homepage() {
         />
         <span><Icon onClick={hidePass} icon={icon} size={25}/></span>
       </div>
+      <div className="login">
+      <text onClick={forgetPassword}>Forget Password?</text>
+      </div>
+      
       <div className="login">
         <button className="login-button" onClick={login}>Login</button>
       </div>

@@ -2,7 +2,8 @@ import React from 'react';
 import "./App.css";
 import {
     onAuthStateChanged,
-    signOut
+    signOut,
+    sendPasswordResetEmail
 } from "firebase/auth";
 import { auth } from "./firebaseconfig";
 import { useState, useEffect } from  "react";
@@ -33,6 +34,20 @@ function FormPage() {
         await signOut(auth);
         history.push("/");
       };
+
+    const changePassword = async () => {
+      try {
+          await sendPasswordResetEmail(
+          auth,
+          user.email
+        );
+        alert("Password reset email sent")
+        
+      } catch (error) {
+        alert(error)
+      }
+      
+    };
  
     const submit = async () => {
 
@@ -41,7 +56,8 @@ function FormPage() {
       const contract = new ethers.Contract(autologAddress, Autolog.abi, signer);
       const dateString = new Date(selectdate).toString();
       const newdateString = dateString.split(' ').slice(0,4).join(' ');
-      const report = detail.concat(', ',fullname,', ', newdateString);
+      
+      const report = detail.concat(', ',fullname,', ',jobs,', ', newdateString);
 
       const transaction = await contract.updateCar(carplateno, report);
 
@@ -49,7 +65,7 @@ function FormPage() {
       setFullName("");
 
       await transaction.wait();
-      console.log(newdateString);
+      console.log(jobs);
       alert("Form submitted successfully");
     };
 
@@ -62,11 +78,14 @@ function FormPage() {
         <div className='userlogin'>{user?.email}</div>
         <div className='logout-changepass'>
           <button className = "logout" onClick={logout}>Logout</button>
+          &nbsp;
+          <button className = "changepass" onClick={changePassword}>Change Password</button>
         </div>
         
       <div className='ReportForm'>
         <div className='reportborder'>
         <h3> Car Plate Number:  
+        &nbsp;
           <input
             placeholder="Car Plate Number..."
             className="car-plate-no"
@@ -86,6 +105,7 @@ function FormPage() {
           />
           </h3>
           <h3> Reporter's Name: 
+          &nbsp;
           <input
             placeholder="Full Name..."
             className="reporters-name"
@@ -95,11 +115,13 @@ function FormPage() {
           />
           </h3>
           <h3> Jobscope: 
-            <select className='jobscope-input' value={jobs} onChange={e=>setjobs(e.target.value)}
+            <select
+            onChange={(e)=>{setjobs(e.target.value)}} 
+            className='jobscope-input'
             placeholder="Jobscope..">
-              <option>Vehicles Mechanic</option>
-              <option>JPJ</option>
-              <option>Puspakom Inspector</option>
+              <option value="Vehicle Mechanics" selected>Vehicles Mechanic</option>
+              <option value="JPJ" >JPJ</option>
+              <option value="Puspakom Inspector" >Puspakom Inspector</option>
             </select>
           </h3>
           <h3> Report's Detail: </h3>
