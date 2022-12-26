@@ -16,6 +16,7 @@ import { ethers } from "ethers";
 const autologAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
 function FormPage() {
+
     const [carplateno, setcarplateno] = useState("");
     const [selectdate, setselectDate] = useState("");
     const [fullname, setFullName] = useState("");
@@ -58,18 +59,35 @@ function FormPage() {
       const newdateString = dateString.split(' ').slice(0,4).join(' ');
       
       const report = detail.concat(', ',fullname,', ',jobs,', ', newdateString);
-
       const transaction = await contract.updateCar(carplateno, report);
 
+      var getCarPlate = document.getElementById("carplate");
+      if (getCarPlate.value !==""){
+        getCarPlate.value = "";
+      }
+
+      var getName = document.getElementById("name");
+      if (getName.value !==""){
+        getName.value = "";
+      }
+
+      var getJobs = document.getElementById("jobs");
+      if (getJobs.value !==""){
+        getJobs.value = "";
+      }
+
+      var getReport = document.getElementById("report");
+      if (getReport.value !==""){
+        getReport.value = "";
+      }
+      
       setReportDetail("");
       setFullName("");
 
       await transaction.wait();
-      console.log(jobs);
+      console.log(report);
       alert("Form submitted successfully");
     };
-
-  
     
     return(
       <div className='Report-Page'>
@@ -87,6 +105,7 @@ function FormPage() {
         <h3> Car Plate Number:  
         &nbsp;
           <input
+            id='carplate'
             placeholder="Car Plate Number..."
             className="car-plate-no"
             onChange={(event) => {
@@ -107,6 +126,7 @@ function FormPage() {
           <h3> Reporter's Name: 
           &nbsp;
           <input
+            id='name'
             placeholder="Full Name..."
             className="reporters-name"
             onChange={(event) => {
@@ -116,16 +136,18 @@ function FormPage() {
           </h3>
           <h3> Jobscope: 
             <select
+            id='jobs'
             onChange={(e)=>{setjobs(e.target.value)}} 
-            className='jobscope-input'
-            placeholder="Jobscope..">
-              <option value="Vehicle Mechanics" selected>Vehicles Mechanic</option>
-              <option value="JPJ" >JPJ</option>
-              <option value="Puspakom Inspector" >Puspakom Inspector</option>
+            className='jobscope-input'>
+              <option defaultValue></option>
+              <option value={"Vehicle Mechanic"}>Vehicles Mechanic</option>
+              <option value={"JPJ"} >JPJ</option>
+              <option value={"Puspakom Inspector"} >Puspakom Inspector</option>
             </select>
           </h3>
           <h3> Report's Detail: </h3>
           <textarea
+            id='report'
             placeholder="Detail..."
             className="car-detail-info"
             onChange={(event) => {
