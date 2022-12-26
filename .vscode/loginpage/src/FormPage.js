@@ -39,8 +39,9 @@ function FormPage() {
       const provider = new ethers.providers.JsonRpcProvider();
       const signer = provider.getSigner();
       const contract = new ethers.Contract(autologAddress, Autolog.abi, signer);
-
-      const report = detail.concat("\n\n\n", fullname, "\n", selectdate);
+      const dateString = new Date(selectdate).toString();
+      const newdateString = dateString.split(' ').slice(0,4).join(' ');
+      const report = detail.concat(', ',fullname,', ', newdateString);
 
       const transaction = await contract.updateCar(carplateno, report);
 
@@ -48,7 +49,7 @@ function FormPage() {
       setFullName("");
 
       await transaction.wait();
-      console.log(selectdate);
+      console.log(newdateString);
       alert("Form submitted successfully");
     };
 
@@ -96,9 +97,9 @@ function FormPage() {
           <h3> Jobscope: 
             <select className='jobscope-input' value={jobs} onChange={e=>setjobs(e.target.value)}
             placeholder="Jobscope..">
+              <option>Vehicles Mechanic</option>
               <option>JPJ</option>
               <option>Puspakom Inspector</option>
-              <option>Vehicles Mechanic</option>
             </select>
           </h3>
           <h3> Report's Detail: </h3>

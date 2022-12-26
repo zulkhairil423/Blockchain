@@ -70,7 +70,7 @@ function Homepage() {
 
   return (
     <div className="AutoLog">
-      <h3 className="login"> Login </h3>
+      <h3 className="login"> Autolog Login Page </h3>
       <div className="login">
         <input
           placeholder="Email..."
