@@ -93,7 +93,7 @@ function FormPage() {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      const answer = window.confirm("are you sure?");
+      const answer = window.confirm("Are you sure you want to submit the details?");
       if (answer) {
         submit();
       } else {
