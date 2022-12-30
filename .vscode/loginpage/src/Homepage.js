@@ -24,6 +24,7 @@ function Homepage() {
   const [icon, setIcon] = useState(eyeClosed);
   const [pass, setPass] = useState('password');
   const [useremail, setUserEmail] = useState('');
+  const [vData, setVData] = useState([]);
 
   //hide and show password function
   const hidePass = () => {
@@ -69,16 +70,16 @@ function Homepage() {
   
 };
 
-  
 //retrive car info function
   async function fetchCarData () {    
     const provider = new ethers.providers.JsonRpcProvider();
     const contract = new ethers.Contract(autologAddress, Autolog.abi, provider);
 
     try {
-      const data = await contract.viewCar(plateNo);
+    const data = await contract.viewCar(plateNo);
     console.log('Data: ', data);
-    document.getElementById("itab").innerHTML = data;
+    setVData(data);
+    document.getElementById("displayplate").innerHTML = plateNo;
   } catch (error) {
     console.log(error.message);
     alert(error)
@@ -131,14 +132,20 @@ function Homepage() {
         />
         <button className="retrieve-info" onClick={fetchCarData}> Retrieve </button>
         </div>
-      <div className="callcarinfo">  
-        <p id="itab"></p>
+      <div className="callcarinfo">
+        <table>
+          <tr>
+            <th>Vehicle Info: <span id="displayplate"></span></th>
+          </tr>
+          <tbody id="maketable">
+          {
+            vData.map(item => {return <tr><td>{item}</td></tr>})
+          }
+          </tbody>
+        </table>
       </div>
-      
-          
     </div>
   );
-
 }
- export default Homepage;
+export default Homepage;
  
