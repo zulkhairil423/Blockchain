@@ -49,8 +49,10 @@ function FormPage() {
       }
       
     };
+
+    
  
-    const submit = async () => {
+    async function submit() {
 
       const provider = new ethers.providers.JsonRpcProvider();
       const signer = provider.getSigner();
@@ -88,6 +90,16 @@ function FormPage() {
       console.log(report);
       alert("Form submitted successfully");
     };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const answer = window.confirm("are you sure?");
+      if (answer) {
+        submit();
+      } else {
+        console.log("Thing was not saved to the database.");
+      }
+    };
     
     return(
       <div className='Report-Page'>
@@ -100,7 +112,7 @@ function FormPage() {
           <button className = "changepass" onClick={changePassword}>Change Password</button>
         </div>
         
-      <div className='ReportForm'>
+      <form className='ReportForm' onSubmit={handleSubmit}>
         <div className='reportborder'>
         <h3> Car Plate Number:  
         &nbsp;
@@ -108,6 +120,7 @@ function FormPage() {
             id='carplate'
             placeholder="Car Plate Number..."
             className="car-plate-no"
+            required
             onChange={(event) => {
               setcarplateno(event.target.value);
             }}
@@ -117,6 +130,7 @@ function FormPage() {
           <DatePicker
             placeholder="Date..."
             className='date-of-report'
+            required
             selected={selectdate}
             onChange={date => setselectDate(date)
             }
@@ -129,6 +143,7 @@ function FormPage() {
             id='name'
             placeholder="Full Name..."
             className="reporters-name"
+            required
             onChange={(event) => {
               setFullName(event.target.value);
             }}
@@ -137,7 +152,10 @@ function FormPage() {
           <h3> Jobscope: 
             <select
             id='jobs'
-            onChange={(e)=>{setjobs(e.target.value)}} 
+            required
+            onChange={(event)=>{
+              setjobs(event.target.value);
+            }} 
             className='jobscope-input'>
               <option defaultValue></option>
               <option value={"Vehicle Mechanic"}>Vehicles Mechanic</option>
@@ -148,6 +166,7 @@ function FormPage() {
           <h3> Report's Detail: </h3>
           <textarea
             id='report'
+            required
             placeholder="Detail..."
             className="car-detail-info"
             onChange={(event) => {
@@ -155,10 +174,10 @@ function FormPage() {
             }}
           />
           <div className='submit'>
-        <button className='submit-report' onClick={submit}>Submit Report</button>
+        <button className='submit-report' onSubmit={(event) => {event.preventDefault();}}>Submit Report</button>
         </div>
         </div>
-      </div>
+      </form>
       </div>
     );
 }
