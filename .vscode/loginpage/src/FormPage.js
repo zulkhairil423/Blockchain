@@ -60,7 +60,7 @@ function FormPage() {
       const dateString = new Date(selectdate).toString();
       const newdateString = dateString.split(' ').slice(0,4).join(' ');
       
-      const report = detail.concat(', ',fullname,', ',jobs,', ', newdateString);
+      const report = detail.concat(',',fullname,',',jobs,',',newdateString);
       const transaction = await contract.updateCar(carplateno, report);
 
       var getCarPlate = document.getElementById("carplate");
@@ -111,15 +111,16 @@ function FormPage() {
           &nbsp;
           <button className = "changepass" onClick={changePassword}>Change Password</button>
         </div>
-        
+
+       
       <form className='ReportForm' onSubmit={handleSubmit}>
-        <div className='reportborder'>
-        <h3> Car Plate Number:  
+      <div className='reportborder'> 
+        <h3> Vehicle Plate Number:  
         &nbsp;
           <input
             id='carplate'
             placeholder="Car Plate Number..."
-            className="car-plate-no"
+            className="vehicle-plate-no"
             required
             onChange={(event) => {
               setcarplateno(event.target.value);
