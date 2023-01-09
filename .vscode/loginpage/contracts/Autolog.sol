@@ -22,8 +22,8 @@ contract CarDataStorage{
 
 
     //set some default for testing
-        updateCar("TEST123", "The front part of the car is to be replaced due to severe damage.");
-        updateCar("TEST123", "The engine belt was changed.");
+        updateCar("TEST123", "The front part of the car is to be replaced due to severe damage, Ahmad, Mon May 2 2022");
+        updateCar("TEST123", "The windshield is cracked, Abu, Tue Oct 4 2022");
         
         updateCar("LOOT123", "The back glass is broken, need change.");
         
