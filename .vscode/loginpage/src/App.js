@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,6 +11,7 @@ import FormPage from "./FormPage";
 
 function App() {
   return (
+    <div className='AutologWebsite'>
     <>
     <Router>
       <Switch>
@@ -21,6 +22,7 @@ function App() {
       </Switch>
     </Router>
     </>
+    </div>
   );
 }
 

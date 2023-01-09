@@ -70,8 +70,8 @@ function Homepage() {
   
 };
 
-//retrive car info function
-  async function fetchCarData () {    
+//retrive vehicle info function
+  async function fetchvehicleData () {    
     const provider = new ethers.providers.JsonRpcProvider();
     const contract = new ethers.Contract(autologAddress, Autolog.abi, provider);
 
@@ -120,20 +120,21 @@ function Homepage() {
       </div>
 
 
-      <h3 className="callcarinfo"> Retrieve Your Car's Data </h3>
-      <div className="callcarinfo">
+      <h3 className="callvehicleinfo"> Retrieve Your Vehicle's Data </h3>
+      <div className="callvehicleinfo">
         <input
           placeholder="PlateNo..."
-          className="car-plate-no"
+          className="vehicle-plate-no"
           onChange={(event) => {
             setPlateNo(event.target.value);
           }}
           value = {plateNo}
         />
-        <button className="retrieve-info" onClick={fetchCarData}> Retrieve </button>
+        <button className="retrieve-info" onClick={fetchvehicleData}> Retrieve </button>
         </div>
-      <div className="callcarinfo">
-        <table>
+        <br/>
+      <div className="callvehicleinfo">
+        <table className="tablevehicle">
           <tr>
             <th>Vehicle Info: <span id="displayplate"></span></th>
           </tr>
